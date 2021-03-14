@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stdint.h>
 
 typedef enum
 {
@@ -15,9 +15,9 @@ typedef enum
 typedef struct
 {
     math_command_t cmd;
-    int arg1;
-    int arg2;
-    int *res;
+    uint32_t arg1;
+    uint32_t arg2;
+    uint32_t *res;
 } math_request_t;
 
 math_result_t math_execute(math_request_t);

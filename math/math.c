@@ -1,17 +1,25 @@
 #include "math.h"
 
 // "Private" method definitions
-static math_result_t add(int, int, int *);
-static math_result_t sub(int, int, int *);
+static math_result_t add(uint32_t, uint32_t, uint32_t *);
+static math_result_t sub(uint32_t, uint32_t, uint32_t *);
 
-math_result_t add(int a, int b, int *res)
+math_result_t add(uint32_t a, uint32_t b, uint32_t *res)
 {
     *res = a + b;
+    if (*res < a)
+    { // Overflow error
+        return MATH_RESULT_ERR;
+    }
     return MATH_RESULT_OK;
 }
 
-math_result_t sub(int a, int b, int *res)
+math_result_t sub(uint32_t a, uint32_t b, uint32_t *res)
 {
+    if (a < b)
+    { // Underflow error
+        return MATH_RESULT_ERR;
+    }
     *res = a - b;
     return MATH_RESULT_OK;
 }
